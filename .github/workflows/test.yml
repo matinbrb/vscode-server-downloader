@@ -1,0 +1,25 @@
+name: Download VS Code Server
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_id:
+        description: 'VS Code Commit ID'
+        required: true
+        type: string
+
+jobs:
+  download-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write 
+    steps:
+      - name: Download File with curl
+        run: |
+          curl -fL "https://update.code.visualstudio.com/commit/${{ github.event.inputs.commit_id }}/server-linux-x64/stable" -o vscode-server-linux-x64.tar.gz
+
+      - name: Create Release and Upload
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "vscode-${{ github.event.inputs.commit_id }}" vscode-server-linux-x64.tar.gz --title "VS Code Server ${{ github.event.inputs.commit_id }}" --notes "Automated download"
