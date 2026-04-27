@@ -1,4 +1,4 @@
-name: Download VS Code Server
+name: test
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Download File with curl
         run: |
-          curl -fL "https://update.code.visualstudio.com/commit/${{ github.event.inputs.commit_id }}/server-linux-x64/insider" -o vscode-server-linux-x64.tar.gz
+          curl -fL "https://update.code.visualstudio.com/commit/560a9dba96f961efea7b1612916f89e5d5d4d679/server-linux-x64/insider" -o vscode-server-linux-x64.tar.gz
 
 
       - name: Create Release and Upload
