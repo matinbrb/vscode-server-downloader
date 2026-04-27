@@ -16,7 +16,8 @@ jobs:
     steps:
       - name: Download File with curl
         run: |
-          curl -fL "https://update.code.visualstudio.com/commit/${{ github.event.inputs.commit_id }}/server-linux-x64/stable" -o vscode-server-linux-x64.tar.gz
+          curl -fL "https://update.code.visualstudio.com/commit/${{ github.event.inputs.commit_id }}/server-linux-x64/insider" -o vscode-server-linux-x64.tar.gz
+
 
       - name: Create Release and Upload
         env:
